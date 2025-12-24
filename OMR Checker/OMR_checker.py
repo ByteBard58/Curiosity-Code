@@ -1,11 +1,16 @@
 import time
 
 
+'''
+OMR Checker
+This script is used to check the OMR sheet of a student. 
+In this version, the list of answers are stored in the script itself. 
+You can add your own list of answers by adding it to the script.
+You can also add multiple question answer sets and then select the set you want to practice with.
 
-
-
-
-
+NOTE: There is another version of this utility named "OMR_checker_v2.py" in the same sub-directory. In that 
+version, you have to input the answers through CLI and then start answering them.
+'''
 
 
 
@@ -66,20 +71,20 @@ neat = []
 print("Choose from A,B,C and D. Input 0(zero) to skip.")
 start = time.time()
 for num,i in enumerate(gt):
-  user = input(f">>> Input your answer for Question No.{num + 1}: ")
-  if user not in ["A","B","C","D","0"]:
-    print("Please input A,B,C or D (in capital form)")
-    break
-  elif user == i:
+  while True:
+    user = input(f">>> Input your answer for Question No.{num + 1}: ")
+    if user in ["A","B","C","D","0"]:
+      break
+    print("Please input A,B,C,D (in capital form) or 0(Zero)")
+
+  if user == i:
     print("Correct Answer !")
     points += 1
-  elif user != i:
-    print("Wrong Answer !")
   elif user == "0":
     print("Question Skipped")
-  else: 
-    print(f"Something went wrong. Iteration Number = {num}")
-    break
+  else:
+    print("Wrong Answer !")
+
 end = time.time()
 elapsed = end - start
 mins, secs = divmod(elapsed, 60)
