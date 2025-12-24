@@ -21,11 +21,11 @@ for i in range(target):
 
 while True:
   perm = input("Are you ready for answering? y/n: ")
-  if perm in ["y","n"]:
+  if perm in ["y","n","Y","N"]:
     break
-  print('Allowed inputs are ["y","n"]')
+  print('Allowed inputs are ["y","n","Y","N"]')
 
-if perm == "n":
+if perm in ["n","N"]:
   print("Waiting 5 seconds and then starting...")
   time.sleep(5)
 
