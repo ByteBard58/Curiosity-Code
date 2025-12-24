@@ -19,6 +19,16 @@ for i in range(target):
       break
     print('Allowed inputs are ["A","B","C","D"]')
 
+while True:
+  perm = input("Are you ready for answering? y/n: ")
+  if perm in ["y","n"]:
+    break
+  print('Allowed inputs are ["y","n"]')
+
+if perm == "n":
+  print("Waiting 5 seconds and then starting...")
+  time.sleep(5)
+
 points = 0
 neat = []
 print("Choose from A,B,C and D. Input 0(zero) to skip.")
