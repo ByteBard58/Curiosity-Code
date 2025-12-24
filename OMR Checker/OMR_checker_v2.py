@@ -1,3 +1,10 @@
+'''
+OMR Checker v2
+This script is used to check the OMR sheet of a student. 
+In this version, the list of answers are NOT stored in the script itself. 
+You have to input the answers through CLI and then start answering them.
+'''
+
 import time
 
 
@@ -21,7 +28,7 @@ for num,i in enumerate(gt):
     user = input(f">>> Input your answer for Question No.{num + 1}: ")
     if user in ["A","B","C","D","0"]:
       break
-    print("Please input A,B,C or D (in capital form)")
+    print("Please input A,B,C,D (in capital form) or 0(Zero)")
 
   if user == i:
     print("Correct Answer !")
