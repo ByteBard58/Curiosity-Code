@@ -7,7 +7,7 @@ You have to input the filename of the answer key and then start answering.
 
 import time
 
-def load_answer_key(filename = "answer_key.txt"):
+def load_answer_key(filename = "OMR Checker/answer_key.txt"):
     try:
         with open(filename, 'r') as f:
             content = f.read().upper()
