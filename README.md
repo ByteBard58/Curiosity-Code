@@ -45,4 +45,4 @@ python chrod_hunt.py
 ```
 
 ## 📝 Note
-This is a private, personal archive. Code is maintained as-needed and subject to change as I explore new ideas or refined methods.
+This is a personal archive. Code is maintained as-needed and subject to change as I explore new ideas or refined methods.
