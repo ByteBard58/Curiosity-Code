@@ -6,19 +6,26 @@ You have to input the filename of the answer key and then start answering.
 '''
 
 import time
+import os
 
 while True:
   print("The answer file options:\n1. answer_key.txt\n2. backup.txt")
   filename = int(input(">>> Input the number of the file (1 or 2): "))
-  if filename in [1,2]:
+  if filename in [1]:
+    filename = "answer_key.txt"
+    if not os.path.exists(filename):
+      print("File not found. Try the other option.")
+      continue
+    break
+  elif filename in [2]:
+    filename = "backup.txt"
+    if not os.path.exists(filename):
+      print("File not found. Try the other option.")
+      continue
     break
   else:
     print("Please input 1 or 2")
 
-if filename == 1:
-  filename = "answer_key.txt"
-else:
-  filename = "backup.txt"
 
 def load_answer_key(filename = filename):
     try:
