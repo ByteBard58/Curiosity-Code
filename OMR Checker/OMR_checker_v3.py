@@ -7,7 +7,20 @@ You have to input the filename of the answer key and then start answering.
 
 import time
 
-def load_answer_key(filename = "OMR Checker/answer_key.txt"):
+while True:
+  print("The answer file options:\n1. answer_key.txt\n2. backup.txt")
+  filename = int(input(">>> Input the number of the file (1 or 2): "))
+  if filename in [1,2]:
+    break
+  else:
+    print("Please input 1 or 2")
+
+if filename == 1:
+  filename = "answer_key.txt"
+else:
+  filename = "backup.txt"
+
+def load_answer_key(filename = filename):
     try:
         with open(filename, 'r') as f:
             content = f.read().upper()

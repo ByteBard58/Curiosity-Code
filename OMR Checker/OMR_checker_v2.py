@@ -10,12 +10,22 @@ import time
 
 # Solutions
 gt = []
-target = int(input(">>> How many questions are there in you question set? : "))
+
+try:
+  target = int(input(">>> How many questions are there in you question set? : "))
+except ValueError:
+  print("Please input a valid integer")
+  exit()
+  
 for i in range(target):
   while True:
     ans = input(f"Input the answer of question {i+1}: ")
     if ans in ["A","B","C","D"]:
       gt.append(ans)
+      # Backing Up the result in case of a terminal crash
+      with open("backup.txt","a") as file:
+        file.write(f"{ans}\n")
+        print("Saved")
       break
     print('Allowed inputs are ["A","B","C","D"]')
 
