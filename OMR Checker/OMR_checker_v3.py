@@ -8,17 +8,21 @@ You have to input the filename of the answer key and then start answering.
 import time
 import os
 
+dirr = os.makedirs("Answer_Scripts_OMRC",exist_ok=True)
+dirr_backup = os.path.join("Answer_Scripts_OMRC","backup.txt")
+dirr_answer_key = os.path.join("Answer_Scripts_OMRC","answer_key.txt")
+
 while True:
   print("The answer file options:\n1. answer_key.txt\n2. backup.txt")
   filename = int(input(">>> Input the number of the file (1 or 2): "))
   if filename in [1]:
-    filename = "answer_key.txt"
+    filename = dirr_answer_key
     if not os.path.exists(filename):
       print("File not found. Try the other option.")
       continue
     break
   elif filename in [2]:
-    filename = "backup.txt"
+    filename = dirr_backup
     if not os.path.exists(filename):
       print("File not found. Try the other option.")
       continue

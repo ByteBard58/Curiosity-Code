@@ -6,7 +6,10 @@ You have to input the answers through CLI and then start answering them.
 '''
 
 import time
+import os
 
+dirr = os.makedirs("Answer_Scripts_OMRC",exist_ok=True)
+dirr = os.path.join("Answer_Scripts_OMRC","backup.txt")
 
 # Solutions
 gt = []
@@ -23,7 +26,7 @@ for i in range(target):
     if ans in ["A","B","C","D"]:
       gt.append(ans)
       # Backing Up the result in case of a terminal crash
-      with open("backup.txt","a") as file:
+      with open(dirr,"a") as file:
         file.write(f"{ans}\n")
         print("Saved")
       break
