@@ -31,7 +31,6 @@ def fibon(n) -> tuple[list[int],list[float],list[int]]:
   
   return elements,golden_ratio,golden_ratio_x
 
-elms,gold,gold_x = fibon(1000)
 
 # Function to generate continued fraction of phi and generate the golden ratio
 def cont_frac(n):
@@ -53,8 +52,6 @@ def cont_frac(n):
   
   return element,element_x
 
-gold_cont,gold_cont_x = cont_frac(1000)
-
 # Function to generate the golden ratio from Square root iteration
 def sqrt_iter(n):
   elements:list[float] = []
@@ -75,24 +72,50 @@ def sqrt_iter(n):
 
   return elements,elements_x
 
+elms,gold,gold_x = fibon(1000)
+gold_cont,gold_cont_x = cont_frac(1000)
 sqrt_elm,sqrt_elm_x = sqrt_iter(1000)
 
-# Plotting the graph
-plt.figure(figsize=(9,6))
+# Calculate Errors
+errors_fib = np.abs(np.array(gold) - phi_main)
+errors_cont = np.abs(np.array(gold_cont) - phi_main)
+errors_sqrt = np.abs(np.array(sqrt_elm) - phi_main)
 
-plt.plot(gold_x,gold, color="orange",
-            marker="s",markersize=3, label="Fibonacchi Series")
-plt.plot(gold_cont_x,gold_cont, color="green",
-            marker="o",markersize=3, label="Continued Fraction")
-plt.plot(sqrt_elm_x,sqrt_elm, color="red",
-            marker="^",markersize=3, label="Square Root Iteration")
-plt.axhline(y=phi_main, color="blue", linestyle="--", linewidth=2,
+# Plotting the graph
+fig, ax = plt.subplots(2, 1, figsize=(10, 8))
+
+# Subplot 1: Convergence
+ax[0].plot(gold_x, gold, color="orange",
+            marker="s", markersize=3, label="Fibonacci Series")
+ax[0].plot(gold_cont_x, gold_cont, color="green",
+            marker="o", markersize=3, label="Continued Fraction")
+ax[0].plot(sqrt_elm_x, sqrt_elm, color="red",
+            marker="^", markersize=3, label="Square Root Iteration")
+
+ax[0].axhline(y=phi_main, color="blue", linestyle="--", linewidth=2,
             label=f"True φ = {phi_main:.12f}")
 
-plt.title("Golden Ratio from Fibonacchi series")
-plt.xlabel("Number of elements in the series")
-plt.ylabel("Golden Ratio")
-plt.xscale("log")
-plt.legend()
-plt.grid()
+ax[0].set_title("Convergence to Golden Ratio (φ)")
+ax[0].set_ylabel("Approximated Value")
+ax[0].set_xscale("log")
+ax[0].legend()
+ax[0].grid(True)
+
+# Subplot 2: Error Analysis
+ax[1].plot(gold_x, errors_fib, color="orange",
+            marker="s", markersize=3, label="Fibonacci Error")
+ax[1].plot(gold_cont_x, errors_cont, color="green",
+            marker="o", markersize=3, label="Continued Fraction Error")
+ax[1].plot(sqrt_elm_x, errors_sqrt, color="red",
+            marker="^", markersize=3, label="Square Root Iteration Error")
+
+ax[1].set_title("Approximation Error")
+ax[1].set_xlabel("Number of Iterations")
+ax[1].set_ylabel("Absolute Error (|Approx - True|)")
+ax[1].set_xscale("log")
+ax[1].set_yscale("log") # Log scale helps visualize the rapid convergence
+ax[1].legend()
+ax[1].grid(True)
+
+plt.tight_layout()
 plt.show()
