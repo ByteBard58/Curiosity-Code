@@ -125,6 +125,7 @@ ax[0].set_ylabel("Approximated Value of Pi",fontdict={"fontsize":13})
 
 ax[0].set_ylim(np.pi-(1e-5),np.pi+(1e-5))
 
+ax[0].grid()
 ax[0].legend()
 
 ## Error plotting
