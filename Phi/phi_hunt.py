@@ -32,7 +32,7 @@ def fibon(n) -> tuple[list[int],list[float],list[int]]:
   return elements,golden_ratio,golden_ratio_x
 
 
-# Function to generate continued fraction of phi and generate the golden ratio
+# Function to generate continuous fraction of phi and generate the golden ratio
 def cont_frac(n):
   element:list[float] = []
   element_x:list[int] = [0]
@@ -48,7 +48,7 @@ def cont_frac(n):
     element.append(outp)
     element_x.append(i)
   end: float = time.time()
-  print(f"Time Taken(Continued Fraction) {(end-strt):.5f} Second")
+  print(f"Time Taken(Continuous Fraction) {(end-strt):.5f} Second")
   
   return element,element_x
 
@@ -77,9 +77,9 @@ gold_cont,gold_cont_x = cont_frac(1000)
 sqrt_elm,sqrt_elm_x = sqrt_iter(1000)
 
 # Calculate Errors
-errors_fib = np.abs(np.array(gold) - phi_main)
-errors_cont = np.abs(np.array(gold_cont) - phi_main)
-errors_sqrt = np.abs(np.array(sqrt_elm) - phi_main)
+errors_fib: list[float] = np.abs(np.array(gold) - phi_main)
+errors_cont: list[float] = np.abs(np.array(gold_cont) - phi_main)
+errors_sqrt: list[float] = np.abs(np.array(sqrt_elm) - phi_main)
 
 # Plotting the graph
 fig, ax = plt.subplots(2, 1, figsize=(10, 8))
@@ -88,7 +88,7 @@ fig, ax = plt.subplots(2, 1, figsize=(10, 8))
 ax[0].plot(gold_x, gold, color="orange",
             marker="s", markersize=3, label="Fibonacci Series")
 ax[0].plot(gold_cont_x, gold_cont, color="green",
-            marker="o", markersize=3, label="Continued Fraction")
+            marker="o", markersize=3, label="Continuous Fraction")
 ax[0].plot(sqrt_elm_x, sqrt_elm, color="red",
             marker="^", markersize=3, label="Square Root Iteration")
 
@@ -105,7 +105,7 @@ ax[0].grid(True)
 ax[1].plot(gold_x, errors_fib, color="orange",
             marker="s", markersize=3, label="Fibonacci Error")
 ax[1].plot(gold_cont_x, errors_cont, color="green",
-            marker="o", markersize=3, label="Continued Fraction Error")
+            marker="o", markersize=3, label="Continuous Fraction Error")
 ax[1].plot(sqrt_elm_x, errors_sqrt, color="red",
             marker="^", markersize=3, label="Square Root Iteration Error")
 
