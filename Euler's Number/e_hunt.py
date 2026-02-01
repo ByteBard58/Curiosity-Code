@@ -1,16 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+import math
 
 trials = 1000
 
-def factorial(n) -> np.integer:
-  result = np.prod([x for x in np.arange(1,n+1)])
-  return result
+def factorial(n):
+  return math.factorial(n)
 
 ## Euler's Formula
 def euler_form(trial) -> tuple[np.ndarray, np.ndarray]:
-  nums = np.arange(0,trial,1)
+  nums = np.arange(1,trial,1)
   t1 = time.time()
   result = (1+ (1/nums))**nums
   t2 = time.time()
