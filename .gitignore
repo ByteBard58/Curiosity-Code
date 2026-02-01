@@ -3,6 +3,7 @@ __pycache__/
 *__marimo__
 *$py.class
 venv/
+Olympiad/
 env/
 *.env
 *__marimo__
