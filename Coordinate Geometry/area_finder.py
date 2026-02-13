@@ -12,29 +12,29 @@ area. A demo is provided.
 
 import numpy as np 
 
-def cross(o, a, b):
-    return (a[0] - o[0]) * (b[1] - o[1]) - \
-           (a[1] - o[1]) * (b[0] - o[0])
+def order_vertices(target:np.ndarray) -> np.ndarray:
+  x = target[:,0]
+  y = target[:,1]
 
-def convex_hull(points):
-    points = sorted(points.tolist())
-    
-    lower = []
-    for p in points:
-        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
-        lower.append(p)
+  centroid_x = np.mean(x)
+  centroid_y = np.mean(y)
 
-    upper = []
-    for p in reversed(points):
-        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
-            upper.pop()
-        upper.append(p)
+  target_l = target.tolist()
+  target_new = []
+  for i in target_l:
+    x_lo = i[0]
+    y_lo = i[1]
+    theta = np.atan2(y_lo-centroid_y, x_lo-centroid_x)
 
-    return np.array(lower[:-1] + upper[:-1])
+    i.append(theta)
+    target_new.append(i)
+  
+  target_new = np.array(target_new)
+  return target_new[target_new[:,2].argsort()]
 
-def area_sc(target) -> np.float64:
-  target = convex_hull(target)
+def area_sc(target:np.ndarray, assume_unordered:bool = False) -> np.float64:
+  if assume_unordered:
+    target = order_vertices(target)
   x: np.ndarray = target[:,0]
   y: np.ndarray = target[:,1]
 
@@ -43,27 +43,30 @@ def area_sc(target) -> np.float64:
 
 # demo
 
+def main():
+  vertex_coords:list[list[float]] = []
+  n_poly:int = int(input(">>> How many vertexes does you polygon have? (Input an Integer) "))
+  print(">>> Input coordinates in this format: x,y")
+  for i in range(n_poly):
+    while True:
+      input_coord = input(f">>> Input the coordinate of the {i+1}th vertex: ")
+      try:
+        x_,y_ = input_coord.split(",")
+      except ValueError:
+        print(">>> Invalid input. Please provide the coordinates in this format: x,y")
+        continue
+      try:
+        x_,y_ = float(x_),float(y_)
+      except ValueError:
+        print(">>> Invalid input. Please provide real numbers as coordinates and follow this format: x,y")
+        continue
+      vertex_list:list[float] = [x_,y_]
+      vertex_coords.append(vertex_list)
+      break
 
-vertex_coords:list[list[float]] = []
-n_poly:int = int(input(">>> How many vertexes does you polygon have? (Input an Integer) "))
-print(">>> Input coordinates in this format: x,y")
-for i in range(n_poly):
-  while True:
-    input_coord = input(f">>> Input the coordinate of the {i+1}th vertex: ")
-    try:
-      x_,y_ = input_coord.split(",")
-    except ValueError:
-      print(">>> Invalid input. Please provide the coordinates in this format: x,y")
-      continue
-    try:
-      x_,y_ = float(x_),float(y_)
-    except ValueError:
-      print(">>> Invalid input. Please provide real numbers as coordinates and follow this format: x,y")
-      continue
-    vertex_list:list[float] = [x_,y_]
-    vertex_coords.append(vertex_list)
-    break
+  print("\nYour provided coordinates are: ")
+  print(vertex_coords)
+  print(f"Area = {area_sc(np.array(vertex_coords))} square units")
 
-print("\nYour provided coordinates are: ")
-print(vertex_coords)
-print(f"Area = {area_sc(np.array(vertex_coords))} square units")
+if __name__ == "__main__":
+  main()
