@@ -21,8 +21,27 @@ def area_sc(target) -> np.float64:
 
 # demo
 
-points = np.array([
-  [0,0], [3,-2], [4,5]
-])
 
-print(area_sc(points))
+vertex_coords = []
+n_poly = int(input(">>> How many vertexes does you polygon have? (Input an Integer) "))
+print(">>> Input coordinates in this format: x,y")
+for i in range(n_poly):
+  while True:
+    input_coord = input(f">>> Input the coordinate of the {i+1}th vertex: ")
+    try:
+      x_,y_ = input_coord.split(",")
+    except ValueError:
+      print(">>> Invalid input. Please provide the coordinates in this format: x,y")
+      continue
+    try:
+      x_,y_ = float(x_),float(y_)
+    except ValueError:
+      print(">>> Invalid input. Please provide real numbers as coordinates and follow this format: x,y")
+      continue
+    vertex_list = [x_,y_]
+    vertex_coords.append(vertex_list)
+    break
+
+print("\nYour provided coordinates are: ")
+print(vertex_coords)
+print(f"Area = {area_sc(np.array(vertex_coords))} square units")
