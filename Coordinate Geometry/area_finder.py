@@ -5,8 +5,11 @@ This program finds the area of a polygon using the Shoelace formula.
 Input is a numpy array of shape (n,2) where n is the number of vertices.
 Output is the area of the polygon.
 
-Pass the desried input to `area_sc` function as an argument and print it, it will provide the
-area. A demo is provided.
+It features a CLI interface for inputting the coordinates.
+NOTE: The order of the vertices must be either CW or CCW.
+Also, an experimental feature is provided to automatically order the vertices,
+but it can only be accessed by setting the assume_unordered parameter to True.
+It will also not work properly if the intended polygon is concave.
 
 '''
 
@@ -40,8 +43,6 @@ def area_sc(target:np.ndarray, assume_unordered:bool = False) -> np.float64:
 
   main_s: np.float64 = abs(np.dot(x,np.roll(y,-1)) - np.dot(y,np.roll(x,-1)))
   return 0.5 * main_s
-
-# demo
 
 def main():
   vertex_coords:list[list[float]] = []
