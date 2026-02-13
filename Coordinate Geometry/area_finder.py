@@ -13,17 +13,17 @@ area. A demo is provided.
 import numpy as np 
 
 def area_sc(target) -> np.float64:
-  x = target[:,0]
-  y = target[:,1]
+  x: np.ndarray = target[:,0]
+  y: np.ndarray = target[:,1]
 
-  main_s = abs(np.dot(x,np.roll(y,-1)) - np.dot(y,np.roll(x,-1)))
+  main_s: np.float64 = abs(np.dot(x,np.roll(y,-1)) - np.dot(y,np.roll(x,-1)))
   return 0.5 * main_s
 
 # demo
 
 
-vertex_coords = []
-n_poly = int(input(">>> How many vertexes does you polygon have? (Input an Integer) "))
+vertex_coords:list[list[float]] = []
+n_poly:int = int(input(">>> How many vertexes does you polygon have? (Input an Integer) "))
 print(">>> Input coordinates in this format: x,y")
 for i in range(n_poly):
   while True:
@@ -38,7 +38,7 @@ for i in range(n_poly):
     except ValueError:
       print(">>> Invalid input. Please provide real numbers as coordinates and follow this format: x,y")
       continue
-    vertex_list = [x_,y_]
+    vertex_list:list[float] = [x_,y_]
     vertex_coords.append(vertex_list)
     break
 
