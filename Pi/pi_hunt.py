@@ -4,13 +4,6 @@ Pi Hunt
 In this script, I have tried to test the two very popular approaches of finding the value of pi, 
 defined by two of the best mathematicians of all time, Leibniz and Ramanujon. After running the calculation,
 I have used matplotlib to visualize the convergence. 
-
-Instructions:
-1. Keep in mind that the Leibniz formula calculation will take a while. It also requires extensive
- computational power. So, run that code at your own risk.
-2. If you decide to run it, then you are good to go. 
-3. If you don't want to run it and just want to see the graph ASAP, then comment out (with #) line 24 to
- line 53 and uncomment line 57 to line 62. It will use the pre-computed values if you do so.
 '''
 
 
@@ -19,47 +12,53 @@ from scipy.special import factorial as sp_fact
 import time
 import matplotlib.pyplot as plt
 
-## Leibniz Formula
+print("Welcome to pi_hunt")
+print("This script will calculate and test convergence of the value of pi using two different formulas, Leibniz and Ramanujon.")
+print("\n")
+
+print("Before we jump right in, choose whether you want to run the Leibniz Formula calculation or not.")
+print("NOTE: The Leibniz Formula calculation will take a while. It also requires extensive computational power. So, run that code at your own risk.")
+
+while True:
+  choice = input(">>> Do you want to run the Leibniz Formula calculation? (y/n): ")
+  if choice == "y" or choice == "n":
+    break
+  else:
+    print("Invalid input. Please try again.")
+    continue
+
 up_lim = [100_000,1_000_000,10_000_000,100_000_000,500_000_000]
-prime_results = []
-errors_l = []
+if choice == "y":
+  print(">>> Running Leibniz Formula as per user's request")
+  ## Leibniz Formula
+  prime_results = []
+  errors_l = []
 
-t1 = time.time()
-print(">>> Running Leibniz Formula")
-for i in up_lim:
-  k = np.arange(i,dtype=np.float64)
+  t1 = time.time()
+  for i in up_lim:
+    k = np.arange(i,dtype=np.float64)
 
-  terms = (((-1)**k) / (2*k +1))
-  result = 4 * np.sum(terms)
-  error = np.pi - result
-  print(f"For {i} parameters, 𝛑 = {result}, error = {error}")
+    terms = (((-1)**k) / (2*k +1))
+    result = 4 * np.sum(terms)
+    error = np.pi - result
+    print(f"For {i} parameters, 𝛑 = {result}, error = {error}")
 
-  prime_results.append(result)
-  errors_l.append(error)
-t2 = time.time()
-print(">>> Leibniz formula has run successfully !!")
+    prime_results.append(result)
+    errors_l.append(error)
+  t2 = time.time()
+  print(">>> Leibniz formula has run successfully !!")
+  minutes, seconds = np.divmod((t2-t1),60)
+  print(f">>> Time Elapsed (Leibniz Formula) = {minutes} Minutes {seconds:.2f} Seconds")
 
-result_dict = {
-  f"{key} Params":f"Approx Value = {value}" for key,value in zip(up_lim,prime_results)
-}
-error_dict = {
-  f"{key} Params":f"Approx Error = {value}" for key,value in zip(up_lim,errors_l)
-}
-print(result_dict)
-print(error_dict)
-
-
-minutes, seconds = np.divmod((t2-t1),60)
-print(f">>> Time Elapsed = {minutes} Minutes {seconds:.2f} Seconds")
-
-
-# ## Output of the commented code
-# prime_results = [np.float64(3.1415826535897926), 
-#  np.float64(3.141591653589791), np.float64(3.1415925535897937), 
-#  np.float64(3.1415926435897927), np.float64(3.1415926515897934)]
-# errors_l = [np.float64(1.0000000000509601e-05), 
-#  np.float64(1.0000000019161348e-06), np.float64(9.99999993922529e-08), 
-#  np.float64(1.00000003833145e-08), np.float64(1.999999721391532e-09)]
+if choice == "n":
+  print(">>> Skipping Leibniz Formula calculation and using pre-computed values")
+  # Pre-computed values
+  prime_results = [np.float64(3.1415826535897926), 
+  np.float64(3.141591653589791), np.float64(3.1415925535897937), 
+  np.float64(3.1415926435897927), np.float64(3.1415926515897934)]
+  errors_l = [np.float64(1.0000000000509601e-05), 
+  np.float64(1.0000000019161348e-06), np.float64(9.99999993922529e-08), 
+  np.float64(1.00000003833145e-08), np.float64(1.999999721391532e-09)]
 
 
 ## Ramanujon formula
@@ -87,18 +86,8 @@ for i in up_lim_1:
 t2_1 = time.time()
 
 print(">>> Ramanujon formula has run successfully !!")
-result_dict_1 = {
-  f"{key} Params":f"Approx Value = {value}" for key,value in zip(up_lim_1,prime_results_rm)
-}
-error_dict_1 = {
-  f"{key} Params":f"Approx Error = {value}" for key,value in zip(up_lim_1,errors_rm)
-}
-print(result_dict_1)
-print(error_dict_1)
-
-
 minutes_1, seconds_1 = np.divmod((t2_1-t1_1),60)
-print(f">>> Time Elapsed = {minutes_1} Minutes {seconds_1:.3f} Seconds")
+print(f">>> Time Elapsed (Ramanujon Formula) = {minutes_1} Minutes {seconds_1:.3f} Seconds")
 
 
 ## Plotting
