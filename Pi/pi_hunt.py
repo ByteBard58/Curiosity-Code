@@ -21,45 +21,45 @@ import matplotlib.pyplot as plt
 
 ## Leibniz Formula
 up_lim = [100_000,1_000_000,10_000_000,100_000_000,500_000_000]
-# prime_results = []
-# errors_l = []
+prime_results = []
+errors_l = []
 
-# t1 = time.time()
-# print(">>> Running Leibniz Formula")
-# for i in up_lim:
-#   k = np.arange(i,dtype=np.float64)
+t1 = time.time()
+print(">>> Running Leibniz Formula")
+for i in up_lim:
+  k = np.arange(i,dtype=np.float64)
 
-#   terms = (((-1)**k) / (2*k +1))
-#   result = 4 * np.sum(terms)
-#   error = np.pi - result
-#   print(f"For {i} parameters, 𝛑 = {result}, error = {error}")
+  terms = (((-1)**k) / (2*k +1))
+  result = 4 * np.sum(terms)
+  error = np.pi - result
+  print(f"For {i} parameters, 𝛑 = {result}, error = {error}")
 
-#   prime_results.append(result)
-#   errors_l.append(error)
-# t2 = time.time()
-# print(">>> Leibniz formula has run successfully !!")
+  prime_results.append(result)
+  errors_l.append(error)
+t2 = time.time()
+print(">>> Leibniz formula has run successfully !!")
 
-# result_dict = {
-#   f"{key} Params":f"Approx Value = {value}" for key,value in zip(up_lim,prime_results)
-# }
-# error_dict = {
-#   f"{key} Params":f"Approx Error = {value}" for key,value in zip(up_lim,errors_l)
-# }
-# print(result_dict)
-# print(error_dict)
-
-
-# minutes, seconds = np.divmod((t2-t1),60)
-# print(f">>> Time Elapsed = {minutes} Minutes {seconds:.2f} Seconds")
+result_dict = {
+  f"{key} Params":f"Approx Value = {value}" for key,value in zip(up_lim,prime_results)
+}
+error_dict = {
+  f"{key} Params":f"Approx Error = {value}" for key,value in zip(up_lim,errors_l)
+}
+print(result_dict)
+print(error_dict)
 
 
-## Output of the commented code
-prime_results = [np.float64(3.1415826535897926), 
- np.float64(3.141591653589791), np.float64(3.1415925535897937), 
- np.float64(3.1415926435897927), np.float64(3.1415926515897934)]
-errors_l = [np.float64(1.0000000000509601e-05), 
- np.float64(1.0000000019161348e-06), np.float64(9.99999993922529e-08), 
- np.float64(1.00000003833145e-08), np.float64(1.999999721391532e-09)]
+minutes, seconds = np.divmod((t2-t1),60)
+print(f">>> Time Elapsed = {minutes} Minutes {seconds:.2f} Seconds")
+
+
+# ## Output of the commented code
+# prime_results = [np.float64(3.1415826535897926), 
+#  np.float64(3.141591653589791), np.float64(3.1415925535897937), 
+#  np.float64(3.1415926435897927), np.float64(3.1415926515897934)]
+# errors_l = [np.float64(1.0000000000509601e-05), 
+#  np.float64(1.0000000019161348e-06), np.float64(9.99999993922529e-08), 
+#  np.float64(1.00000003833145e-08), np.float64(1.999999721391532e-09)]
 
 
 ## Ramanujon formula
