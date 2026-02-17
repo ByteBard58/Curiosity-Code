@@ -46,7 +46,16 @@ def area_sc(target:np.ndarray, assume_unordered:bool = False) -> np.float64:
 
 def main():
   vertex_coords:list[list[float]] = []
-  n_poly:int = int(input(">>> How many vertexes does you polygon have? (Input an Integer) "))
+  while True:
+    try:
+      n_poly:int = int(input(">>> How many vertices does you polygon have? (Input an Integer) "))
+    except ValueError:
+      print("Invalid input. Please provide a positive integer (also greater than 2) as the number of vertices.")
+      continue
+    if n_poly <=2:
+      print("Invalid Input. Please provide a positive integer that is greater than 2.")
+      continue
+    break
   print(">>> Input coordinates in this format: x,y")
   for i in range(n_poly):
     while True:
@@ -65,9 +74,13 @@ def main():
       vertex_coords.append(vertex_list)
       break
 
-  print("\nYour provided coordinates are: ")
-  print(vertex_coords)
-  print(f"Area = {area_sc(np.array(vertex_coords))} square units")
+  area = area_sc(np.array(vertex_coords))
+  if area== 0:
+    print("The provided points are collinear and don't form an enclosed shape. So, the area is equivalent to 0.")
+  else: 
+    print("\nYour provided coordinates are: ")
+    print(vertex_coords)
+    print(f"Area = {area} square units")
 
 if __name__ == "__main__":
   main()
