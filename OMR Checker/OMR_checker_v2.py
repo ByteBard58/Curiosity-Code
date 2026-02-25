@@ -8,6 +8,9 @@ You have to input the answers through CLI and then start answering them.
 import time
 import os
 
+if os.path.exists("Answer_Scripts_OMRC/backup.txt"):
+  os.remove("Answer_Scripts_OMRC/backup.txt")
+
 dirr = os.makedirs("Answer_Scripts_OMRC",exist_ok=True)
 dirr = os.path.join("Answer_Scripts_OMRC","backup.txt")
 
@@ -74,8 +77,3 @@ elapsed = end - start
 mins, secs = divmod(elapsed, 60)
 print(f"Your Score = {points}/{len(gt)}")
 print(f"Time taken: {int(mins)} min {secs:.2f} sec")
-
-if os.path.exists(dirr):
-  os.remove(dirr)
-else:
-  print("Couldn't find the backup file. Deletion unsuccessful.")
