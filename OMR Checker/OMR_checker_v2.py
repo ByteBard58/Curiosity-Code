@@ -39,6 +39,15 @@ while True:
   print('Allowed inputs are ["y","n","Y","N"]')
 
 if perm in ["n","N"]:
+  choice = input("Do you want to run the test later? y/n: ")
+  while True:
+    if choice in ["y","n","Y","N"]:
+      break
+    print('Allowed inputs are ["y","n","Y","N"]')
+    continue
+  if choice in ["y","Y"]:
+    print("You can run the test later by running OMR_checker_v3.py. Just make sure to select backup.txt when asked for the answer script.")
+    exit()
   print("Waiting 5 seconds and then starting...")
   time.sleep(5)
 
@@ -66,3 +75,7 @@ mins, secs = divmod(elapsed, 60)
 print(f"Your Score = {points}/{len(gt)}")
 print(f"Time taken: {int(mins)} min {secs:.2f} sec")
 
+if os.path.exists(dirr):
+  os.remove(dirr)
+else:
+  print("Couldn't find the backup file. Deletion unsuccessful.")
