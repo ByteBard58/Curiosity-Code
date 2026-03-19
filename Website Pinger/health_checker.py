@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 
-TARGET_URL = "https://www.example.com/"
+TARGET_URL = "https://www.example.com/"    ## Edit the target URL as per your need
 
 def health_checker(target_url=TARGET_URL):
   timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
