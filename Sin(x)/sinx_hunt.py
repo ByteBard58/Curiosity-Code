@@ -1,3 +1,11 @@
+"""
+sinx_hunt.py
+
+This script calculates the Taylor series expansion for sin(x) and visualizes 
+both the convergence of the series approximation and the absolute error 
+at each iteration.
+"""
+
 import time
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,7 +24,7 @@ t2 = time.time()
 minute, second = np.divmod(t2-t1, 60)
 print(f"Time Taken: {minute} Minutes {second:.3f} Seconds")
 
-# PLOTTING PART
+## PLOTTING PART
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), sharex=True)
 
 # Subplot 1: Convergence of the series
