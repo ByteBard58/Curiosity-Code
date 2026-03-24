@@ -1,3 +1,9 @@
+"""
+chord_hunt.py
+Calculates the chord length of a circle given the arc length and radius,
+using the central angle derived from the arc-to-circumference ratio.
+"""
+
 import numpy as np
 
 def chord_length(arc:float , radius:float) -> float:

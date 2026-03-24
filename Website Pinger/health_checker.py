@@ -1,3 +1,9 @@
+"""
+health_checker.py
+Performs a health check on a target URL by fetching the page, extracting its title,
+and reporting the HTTP status code, response time, and any errors encountered.
+"""
+
 import requests
 from bs4 import BeautifulSoup
 import datetime

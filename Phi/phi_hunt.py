@@ -1,3 +1,9 @@
+"""
+phi_hunt.py
+Approximates the golden ratio (φ) using Fibonacci series, continuous fractions,
+and square root iteration, then plots convergence and error for each method.
+"""
+
 from scipy.constants import golden
 import numpy as np
 import time

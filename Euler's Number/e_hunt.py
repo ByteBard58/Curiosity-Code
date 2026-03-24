@@ -1,3 +1,9 @@
+"""
+e_hunt.py
+Approximates Euler's number (e) using Euler's limit formula and the Taylor series
+(continuous fraction), then plots convergence and error analysis for both methods.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import time
