@@ -21,9 +21,9 @@ Experiments focused on **Euler's number ($e$)**.
   - **Features**: Computes $e$ up to $10^6$ terms and plots the approach to the true value.
 - **`e_hunt.png`**: Visualization of the calculation or approximation process.
 
-### 3. Chord Hunt (`chrod_hunt.py`)
+### 3. Chord Hunt (`chord_hunt.py`)
 A utility script for circle geometry.
-- **`chrod_hunt.py`**: A handy tool to calculate the length of a **chord** given the **arc length** and **radius**.
+- **`chord_hunt.py`**: A handy tool to calculate the length of a **chord** given the **arc length** and **radius**.
   - **Inputs**: Arc length, Radius.
   - **Outputs**: Chord length, Angle subtended at the center (in Radians).
   - Includes error handling to ensure the arc length does not exceed the circumference.
