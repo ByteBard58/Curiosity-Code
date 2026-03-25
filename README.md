@@ -27,6 +27,12 @@ A utility script for circle geometry.
   - **Inputs**: Arc length, Radius.
   - **Outputs**: Chord length, Angle subtended at the center (in Radians).
   - Includes error handling to ensure the arc length does not exceed the circumference.
+  
+### 4. Coordinate Geometry(`Coordinate Geometry`)
+A subdirectory filled with tools that use concepts from coordinate geometry to perform mathematical tasks. Some of the tools inside it are:
+
+- **`Coordinate Geometry/area_finder.py`**: A CLI tool that calculates the area of any polygon using the **Shoelace Formula**.
+ 
 
 ## 🛠️ Technology Stack
 
