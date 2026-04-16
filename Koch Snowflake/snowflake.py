@@ -87,12 +87,13 @@ def plot_snowflake(points):
   ys.append(points[0][1])
 
   plt.figure(figsize=(8, 8))
-  plt.plot(xs, ys, color="#ed6f15", linewidth=1.5)
-  plt.fill(xs, ys, color="#ed6f15", alpha=0.08)
+  plt.style.use("dark_background")
+  plt.plot(xs, ys, color="#36F4EB", linewidth=1.5)
+  plt.fill(xs, ys, color="#36F4EB", alpha=1)
   plt.gca().set_aspect("equal", adjustable="box")
   plt.axis("off")
   plt.tight_layout()
-  plt.savefig("Koch Snowflake/snowflake.png",dpi=500)
+  plt.savefig("Koch Snowflake/snowflake.png",dpi=1500)
   plt.close()
 
 
