@@ -1,3 +1,15 @@
+"""
+snowflake.py
+
+This script generates the points of a Koch Snowflake 
+  and visualizes it using Matplotlib.
+The algorithm starts with an equilateral triangle and 
+  iteratively adds new points to create the 
+  characteristic zigzag pattern of the snowflake. 
+  The final image is saved as "snowflake.png" in the "Koch Snowflake" directory.
+"""
+
+
 import numpy as np
 from math import sqrt
 from typing import List
@@ -44,7 +56,7 @@ def iteration(n:int,initial:List[List[float]]):
   `n` : Number of iterations.
   `initial` : Initial points of the equilateral triangle.
   """
-   
+
   result = initial
   k_result = []
 
