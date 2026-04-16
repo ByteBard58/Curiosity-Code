@@ -14,6 +14,7 @@ import numpy as np
 from math import sqrt
 from pathlib import Path
 from typing import List
+import time
 import matplotlib
 
 matplotlib.use("Agg")
@@ -64,6 +65,7 @@ def iteration(n:int,initial:List[List[float]]):
   result = initial
   k_result = []
 
+  t1 = time.time()
   for i in range(n):
     print(f"Running {i}th iteration")
     for index in range(len(result)):
@@ -75,6 +77,9 @@ def iteration(n:int,initial:List[List[float]]):
         k_result.extend([a,b,c,d])
     result = k_result
     print(f"{i}th iteration complete ! Saved points = {len(result)}")
+  t2 = time.time()
+  min,sec = np.divmod(t2-t1,60)
+  print(f"Iteration Complete ! Time Taken: {min} Minute {sec:.3f} seconds")
 
   return result
 
@@ -94,6 +99,7 @@ def plot_snowflake(points):
   output_dir = Path(__file__).resolve().parent
   png_path = output_dir / "snowflake.png"
   svg_path = output_dir / "snowflake.svg"
+  pdf_path = output_dir/ "snowflake.pdf"
 
   fig, ax = plt.subplots(figsize=(10, 10), dpi=200, facecolor="black")
   ax.set_facecolor("black")
@@ -110,8 +116,9 @@ def plot_snowflake(points):
   ax.set_aspect("equal", adjustable="box")
   ax.axis("off")
   fig.tight_layout(pad=0)
-  fig.savefig(png_path, dpi=800, facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0)
+  fig.savefig(png_path, dpi=500, facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0)
   fig.savefig(svg_path, facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0)
+  plt.savefig(pdf_path, facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0)
   plt.close(fig)
 
 
