@@ -1,6 +1,7 @@
 import numpy as np
 from math import sqrt
 from typing import List
+import matplotlib.pyplot as plt
 
 """
 [x] Create Function that will: 
@@ -26,8 +27,8 @@ def manipulate_vector(A:np.ndarray[float],B:np.ndarray[float]) -> List[np.ndarra
 
   PQ:np.ndarray = Q - P
 
-  cos = np.cos(np.pi/3)
-  sin = np.sin(np.pi/3)
+  cos = np.cos(- np.pi/3)
+  sin = np.sin(- np.pi/3)
   v_x = PQ[0]
   v_y = PQ[1]
 
@@ -59,9 +60,27 @@ def iteration(n:int,initial:List[List[float]]):
 
   return result
 
+def plot_snowflake(points):
+  xs = [point[0] for point in points]
+  ys = [point[1] for point in points]
+
+  # Close the polygon so the last point connects back to the first.
+  xs.append(points[0][0])
+  ys.append(points[0][1])
+
+  plt.figure(figsize=(8, 8))
+  plt.plot(xs, ys, color="#1f77b4", linewidth=1.5)
+  plt.fill(xs, ys, color="#1f77b4", alpha=0.08)
+  plt.gca().set_aspect("equal", adjustable="box")
+  plt.axis("off")
+  plt.tight_layout()
+  plt.show()
+
 
 if __name__ == "__main__":
-  pass
+  initial = [[0, 0], [2, 0], [1, sqrt(3)]]
+  desired = iteration(n=5, initial=initial)
+  plot_snowflake(desired)
 
 # def iteration(n:int,initial:List[List[float]]):
 #   if n > 5 :
