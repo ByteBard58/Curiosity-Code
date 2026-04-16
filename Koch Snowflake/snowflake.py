@@ -12,7 +12,11 @@ The algorithm starts with an equilateral triangle and
 
 import numpy as np
 from math import sqrt
+from pathlib import Path
 from typing import List
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 def manipulate_vector(A:np.ndarray[float],B:np.ndarray[float]) -> List[np.ndarray]:
@@ -86,18 +90,32 @@ def plot_snowflake(points):
   xs.append(points[0][0])
   ys.append(points[0][1])
 
-  plt.figure(figsize=(8, 8))
   plt.style.use("dark_background")
-  plt.plot(xs, ys, color="#36F4EB", linewidth=1.5)
-  plt.fill(xs, ys, color="#36F4EB", alpha=1)
-  plt.gca().set_aspect("equal", adjustable="box")
-  plt.axis("off")
-  plt.tight_layout()
-  plt.savefig("Koch Snowflake/snowflake.png",dpi=1500)
-  plt.close()
+  output_dir = Path(__file__).resolve().parent
+  png_path = output_dir / "snowflake.png"
+  svg_path = output_dir / "snowflake.svg"
+
+  fig, ax = plt.subplots(figsize=(10, 10), dpi=200, facecolor="black")
+  ax.set_facecolor("black")
+  ax.plot(
+    xs,
+    ys,
+    color="#36F4EB",
+    linewidth=2.25,
+    antialiased=True,
+    solid_capstyle="round",
+    solid_joinstyle="round",
+  )
+  ax.fill(xs, ys, color="#36F4EB", alpha=1, antialiased=True)
+  ax.set_aspect("equal", adjustable="box")
+  ax.axis("off")
+  fig.tight_layout(pad=0)
+  fig.savefig(png_path, dpi=800, facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0)
+  fig.savefig(svg_path, facecolor=fig.get_facecolor(), bbox_inches="tight", pad_inches=0)
+  plt.close(fig)
 
 
 if __name__ == "__main__":
   initial = [[0, 0], [2, 0], [1, sqrt(3)]]
-  desired = iteration(n=6, initial=initial)
+  desired = iteration(n=5, initial=initial) # If you want, increase n, but at your own risk
   plot_snowflake(desired)
